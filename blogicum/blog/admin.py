@@ -13,7 +13,6 @@ class CategoryAdmin(admin.ModelAdmin):
     )
     list_editable = (
         # 'is_published',
-        # 'created_at',
         # 'category',
     )
     search_fields = (
@@ -45,7 +44,6 @@ class PostAdmin(admin.ModelAdmin):
     )
     list_editable = (
         # 'is_published',
-        # 'created_at',
         'category',
     )
     search_fields = ('title',)

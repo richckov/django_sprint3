@@ -15,7 +15,7 @@ class Category(PublishedModel):
         unique=True,
         help_text='Идентификатор страницы для URL;'
         'разрешены символы латиницы, цифры, дефис и подчёркивание.',
-        )
+    )
 
     class Meta:
         verbose_name = 'Тематическая категория'
@@ -43,26 +43,26 @@ class Post(PublishedModel):
         'Дата и время публикации',
         help_text='Если установить дату и время в будущем — '
         'можно делать отложенные публикации.',
-        )
+    )
     author = models.ForeignKey(
         User,
         verbose_name='Автор публикации',
         on_delete=models.CASCADE,
         related_name='Post',
-        )
+    )
     location = models.ForeignKey(
         Location,
         verbose_name='Местоположение',
         on_delete=models.SET_NULL,
         null=True,
         related_name='Post',
-        )
+    )
     category = models.ForeignKey(
         Category,
         verbose_name='Категория',
         on_delete=models.CASCADE,
         related_name='Post',
-        )
+    )
 
     class Meta:
         verbose_name = 'Публикация'
