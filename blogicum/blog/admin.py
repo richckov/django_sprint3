@@ -18,7 +18,7 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = (
         'title',
         'category',
-        )
+    )
     # list_filter = ('category',)
     list_display_links = ('title',)
     empty_value_display = 'Не задано'

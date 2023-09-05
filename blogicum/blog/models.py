@@ -13,13 +13,13 @@ class Category(PublishedModel):
     slug = models.SlugField(
         'Идентификатор',
         unique=True,
-        help_text='Идентификатор страницы для URL;'
+        help_text='Идентификатор страницы для URL; '
         'разрешены символы латиницы, цифры, дефис и подчёркивание.',
     )
 
     class Meta:
-        verbose_name = 'Тематическая категория'
-        verbose_name_plural = 'Тематические категории'
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
 
     def __str__(self):
         return self.title
@@ -29,8 +29,8 @@ class Location(PublishedModel):
     name = models.CharField('Название места', max_length=256)
 
     class Meta:
-        verbose_name = 'Географическая метка'
-        verbose_name_plural = 'Географические метки'
+        verbose_name = 'местоположение'
+        verbose_name_plural = 'местоположения'
 
     def __str__(self):
         return self.name
@@ -54,19 +54,20 @@ class Post(PublishedModel):
         Location,
         verbose_name='Местоположение',
         on_delete=models.SET_NULL,
-        null=True,
+        null=False,
         related_name='Post',
     )
     category = models.ForeignKey(
         Category,
         verbose_name='Категория',
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=False,
         related_name='Post',
     )
 
     class Meta:
-        verbose_name = 'Публикация'
-        verbose_name_plural = 'Публикации'
+        verbose_name = 'публикация'
+        verbose_name_plural = 'публикации'
 
     def __str__(self):
         return self.title

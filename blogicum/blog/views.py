@@ -15,7 +15,7 @@ def index(request) -> HttpResponse:
         is_published=True,
         category__is_published=True,
         pub_date__lte=datetime.datetime.now(),
-    ).order_by('-pub_date')  # [:5]
+    ).order_by('-pub_date')[:5]
     context: dict = {'post_list': post_list}
     return render(request, 'blog/index.html', context)
 
