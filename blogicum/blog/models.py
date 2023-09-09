@@ -19,7 +19,7 @@ class Category(PublishedModel):
 
     class Meta:
         verbose_name = 'категория'
-        verbose_name_plural = 'категории'
+        verbose_name_plural = 'Категории'
 
     def __str__(self):
         return self.title
@@ -30,7 +30,7 @@ class Location(PublishedModel):
 
     class Meta:
         verbose_name = 'местоположение'
-        verbose_name_plural = 'местоположения'
+        verbose_name_plural = 'Местоположения'
 
     def __str__(self):
         return self.name
@@ -54,20 +54,20 @@ class Post(PublishedModel):
         Location,
         verbose_name='Местоположение',
         on_delete=models.SET_NULL,
-        null=False,
+        null=True,
         related_name='Post',
     )
     category = models.ForeignKey(
         Category,
         verbose_name='Категория',
         on_delete=models.SET_NULL,
-        null=False,
+        null=True,
         related_name='Post',
     )
 
     class Meta:
         verbose_name = 'публикация'
-        verbose_name_plural = 'публикации'
+        verbose_name_plural = 'Публикации'
 
     def __str__(self):
         return self.title
