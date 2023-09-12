@@ -1,5 +1,7 @@
 from pathlib import Path
 
+COUNT_POST = 5
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
