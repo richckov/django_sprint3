@@ -46,3 +46,4 @@ def category_posts(request, category_slug) -> HttpResponse:
         'post_list': posts,
     }
     return render(request, 'blog/category.html', context)
+
