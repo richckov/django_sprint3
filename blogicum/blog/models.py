@@ -72,8 +72,6 @@ class Post(PublishedModel):
         on_delete=models.SET_NULL,
         null=True,
     )
-    objects = models.Manager()
-    post_objects = PostManager()
 
     class Meta:
         verbose_name = 'публикация'
