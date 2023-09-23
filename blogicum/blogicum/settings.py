@@ -94,4 +94,3 @@ STATICFILES_DIRS = [BASE_DIR / 'project_static']
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
