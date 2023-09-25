@@ -34,19 +34,20 @@ def post_detail(request, pk) -> HttpResponse:
 
 
 def category_posts(request, category_slug) -> HttpResponse:
-    """ды Страница категорий """
+    """ Страница категорий """
     category = get_object_or_404(
-        Category,
-        slug=category_slug,
-        is_published=True,
+        Category.objects.filter(
+            is_published=True,
+            slug=category_slug,
+        )
     )
-    post_list = Post.objects.filter(
+    posts = category.posts.filter(
         category=category,
         is_published=True,
         pub_date__lte=datetime.datetime.now(),
-    )
+        )
     context: dict = {
         'category': category,
-        'post_list': post_list,
+        'post_list': posts,
     }
     return render(request, 'blog/category.html', context)

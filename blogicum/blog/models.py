@@ -13,8 +13,8 @@ class PostManager(models.Manager):
     def get_queryset(self) -> QuerySet:
         return super().get_queryset().filter(
             is_published=True,
+            category__is_published=True,
             pub_date__lte=datetime.datetime.now(),
-            related_name='posts',
         )
 
 
@@ -59,19 +59,25 @@ class Post(PublishedModel):
         User,
         verbose_name='Автор публикации',
         on_delete=models.CASCADE,
+        related_name='posts',
     )
     location = models.ForeignKey(
         Location,
         verbose_name='Местоположение',
         on_delete=models.SET_NULL,
         null=True,
+        related_name='posts',
     )
     category = models.ForeignKey(
         Category,
         verbose_name='Категория',
         on_delete=models.SET_NULL,
         null=True,
+        related_name='posts',
     )
+
+    objects = models.Manager()
+    active_objects = PostManager()
 
     class Meta:
         verbose_name = 'публикация'
