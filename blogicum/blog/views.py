@@ -45,7 +45,7 @@ def category_posts(request, category_slug) -> HttpResponse:
         category=category,
         is_published=True,
         pub_date__lte=datetime.datetime.now(),
-        )
+    )
     context: dict = {
         'category': category,
         'post_list': posts,
