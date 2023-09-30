@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 
 from blogicum.settings import COUNT_POST
 
-from .models import Category, Post  # PostManager
+from .models import Category, Post
 
 
 def index(request) -> HttpResponse:
