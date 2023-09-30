@@ -1,21 +1,16 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from .models import Post, Category
 import datetime
+
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+
 from blogicum.settings import COUNT_POST
+
+from .models import Category, Post  # PostManager
 
 
 def index(request) -> HttpResponse:
     """ Главная страница """
-    post_list = Post.objects.select_related(
-        'location',
-        'category',
-        'author',
-    ).filter(
-        is_published=True,
-        category__is_published=True,
-        pub_date__lte=datetime.datetime.now(),
-    ).order_by('-pub_date')[:COUNT_POST]
+    post_list = Post.active_objects.all()[:COUNT_POST]
     context: dict = {'post_list': post_list}
     return render(request, 'blog/index.html', context)
 
@@ -42,7 +37,6 @@ def category_posts(request, category_slug) -> HttpResponse:
         )
     )
     posts = category.posts.filter(
-        category=category,
         is_published=True,
         pub_date__lte=datetime.datetime.now(),
     )
